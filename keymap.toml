@@ -1,0 +1,11 @@
+[[manager.prepend_keymap]]
+on  = "<C-n>"
+run = '''
+    shell 'dragon-drop -x -i -s 120 -T "$@"' --confirm
+'''
+
+[[manager.prepend_keymap]]
+on  = "y"
+run = [ '''
+	shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm
+''', "yank" ]

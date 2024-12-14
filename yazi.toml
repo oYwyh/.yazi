@@ -1,0 +1,103 @@
+[opener]
+global = [
+        { run = '~/.config/yazi/scripts/reveal.sh "$@"', desc = 'Reveal in Explorer' },
+        { run = 'trash "$@"', desc = 'Trash' },
+        { run = 'rm -rf "$@"', desc = 'Delete' },
+	{ run = '~/.config/yazi/scripts/properties.sh "$@"', desc = "Properties" },
+]
+
+image = [
+        { run = 'xdg-open "$@"', orphan = true, desc = "Open" },
+        { run = 'gimp "$@"', orphan = true, desc = "Edit" },
+	{ run = 'swww img "$@"', orphan = true, desc = "Set as Wallpaper" },
+]
+
+edit = [
+        { run = 'nano "$@"', block = true, desc = "Nano" },
+        { run = 'sudo nano "$@"', block = true, desc = "Sudo" },
+        { run = 'code "$@"', desc = 'Code' },
+        { run = 'dolphin "$@"', desc = 'Reveal In Explorer' },
+        { run = '~/.config/yazi/scripts/properties.sh "$@"', desc = "Properties" },
+]
+
+video = [{ run = 'mpv "$@"', orphan = true, desc = "Play" }]
+
+audio = [{ run = 'vlc "$@"', orphan = true, desc = "Play" }]
+
+folder = [
+        { run = 'yazi "$@"', block = true, desc = 'Open' },
+	{ run = 'kitty "$@"', orphan = true, desc = 'Open in terminal' },
+        { run = 'code "$@"', orphan = true, desc = 'Open With Vs Code' },
+]
+
+libreoffice = [{ run = 'libreoffice "$@"', orphan = true, desc = "Open" }]
+
+torrent = [{ run = 'xdg-open "$@"', orphan = true, desc = "Open" }]
+
+[open]
+prepend_rules = [
+        { mime = "inode/directory", use = [
+                "folder",
+                "global",
+        ] },
+        { mime = "image/*", use = [
+                "image",
+                "global",
+        ] },
+        { mime = "video/*", use = [
+                "video",
+                "global",
+        ] },
+	{ mime = "audio/*", use = [
+		"audio",
+		"global",	
+	] },
+        { mime = "application/pdf", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { mime = "application/vnd.ms-excel", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use = [
+                "libreoffice",
+                "global",
+        ] }, # XLSX
+        { mime = "application/msword", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", use = [
+                "libreoffice",
+                "global",
+        ] }, # DOCX
+        { mime = "text/csv", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { name = "*.docx", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { name = "*.xlsx", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { name = "*.csv", use = [
+                "libreoffice",
+                "global",
+        ] },
+        { name = "*.pptx", use = [
+                "libreoffice",
+                "global",
+        ] }, # PowerPoint files
+        { name = "*.pdf", use = [
+                "libreoffice",
+                "global",
+        ] },
+	{ name = "*.torrent", use = [
+		"torrent",
+		"global",
+	] },
+]
